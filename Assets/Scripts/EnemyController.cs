@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject player;
+    [SerializeField] private GameObject player;
 
-    private Vector3 offset;
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + offset;
+        rb.AddForce(player.transform.position - transform.position);
+
     }
 }
